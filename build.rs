@@ -1,0 +1,18 @@
+use std::process::Command;
+
+const TAILWIND_VERSION: &str = "3.4.1";
+
+fn main() {
+    println!("dick balling");
+    Command::new(if cfg!(windows) { "cmd" } else { "sh" })
+        .args([
+            if cfg!(windows) { "/C" } else { "-c" },
+            format!(
+                "npx -- tailwindcss@{} -i templates/main.css -o static/main.css --minify",
+                TAILWIND_VERSION
+            )
+            .as_str(),
+        ])
+        .output()
+        .expect("failed to run tailwind, is npm installed??????");
+}

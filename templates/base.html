@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>pandarose_</title>
+    <link rel="stylesheet" href="/static/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="mocha bg-base font-mono justify-center flex py-6 text-text bg-cover"
+  >
+    <div class="w-[47rem] text-balanced">
+      <div
+        class="flex flex-row place-content-between text-md font-bold md:text-xl"
+      >
+        <a href="/" class="text-mauve"> home</a>
+        <a href="/projects" class="text-pink"> projects </a>
+        <a href="/blog" class="text-flamingo"> blog </a>
+        <a href="/contact" class="text-rosewater"> contact </a>
+      </div>
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>

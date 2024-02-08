@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+img.button {
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    object-fit: contain;
+    width: 88px;
+    height: 31px;
+    @apply mt-1 mr-1
+}

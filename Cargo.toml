@@ -1,0 +1,18 @@
+[package]
+name = "bebsite"
+version = "0.1.0"
+edition = "2021"
+
+build = "build.rs"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+askama = { version = "0.12.1", features = ["with-axum", "markdown"] }
+askama_axum = { version = "0.4.0", features = ["markdown"] }
+axum = { version = "0.7.4", features = ["tracing"] }
+tokio = { version = "1.36.0", features = ["full"] }
+tower-http = { version = "0.5.1", features = ["fs"] }
+
+
+[profile.dev.package.askama_derive]
+opt-level = 3
