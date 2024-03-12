@@ -1,6 +1,10 @@
+use std::collections::HashMap;
+
 use askama::Template;
-use axum::response::IntoResponse;
-use axum::{routing::get, Router};
+use axum::{
+    routing::{get, get_service},
+    Router,
+};
 use tower_http::services::ServeDir;
 
 pub type Result<T = (), E = Box<dyn std::error::Error>> = std::result::Result<T, E>;
@@ -10,6 +14,8 @@ async fn main() -> Result {
     let app = Router::new()
         .route("/", get(home))
         .route("/contact", get(contact))
+        // .route("/blog", get(blog))
+        .route("/blog/:id", get_service(ServeDir::new("html")))
         .nest_service("/static", ServeDir::new("static"));
 
     let listener = tokio::net::TcpListener::bind("127.0.0.1:3000").await?;
@@ -38,3 +44,23 @@ struct Contact {
 async fn contact() -> Contact {
     Contact { meow: 4 }
 }
+
+// #[derive(Template)]
+// #[template(path = "projects.html")]
+// struct Blog {
+//     posts: HashMap<String, String>,
+// }
+
+// #[derive(Deserialize)]
+// struct Frontmatter {
+//     title: String,
+//     blurb: String,
+// }
+
+// fn make_markdown
+
+// #[derive(Template)]
+// #[template(path = "blog.html")]
+// struct Page {
+// content: String,
+// }
