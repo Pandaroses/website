@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="flex flex-row justify-between my-2 py-2 text-2xl border-b-2  border-rosewater"> 
+<div class="text-text "> {{title}} </div>
+<a href="/blog" class="text-red ">back </a>
+</div>
+<div class=""> {{body|safe}}  </div>
+
+{% endblock %}
+
+
+

@@ -1,11 +1,9 @@
-use std::collections::HashMap;
-
 use askama::Template;
 use axum::{
     routing::{get, get_service},
     Router,
 };
-use tower_http::services::ServeDir;
+use tower_http::services::{ServeDir, ServeFile};
 
 pub type Result<T = (), E = Box<dyn std::error::Error>> = std::result::Result<T, E>;
 
@@ -14,9 +12,10 @@ async fn main() -> Result {
     let app = Router::new()
         .route("/", get(home))
         .route("/contact", get(contact))
-        // .route("/blog", get(blog))
-        .route("/blog/:id", get_service(ServeDir::new("html")))
-        .nest_service("/static", ServeDir::new("static"));
+        .nest_service("/blog", ServeFile::new("templates/truesay.html"))
+        .route("/project", get(projects))
+        .nest_service("/static", ServeDir::new("static"))
+        .nest_service("/blogs", ServeDir::new("blog"));
 
     let listener = tokio::net::TcpListener::bind("127.0.0.1:3000").await?;
     println!("listening at yeah");
@@ -45,22 +44,12 @@ async fn contact() -> Contact {
     Contact { meow: 4 }
 }
 
-// #[derive(Template)]
-// #[template(path = "projects.html")]
-// struct Blog {
-//     posts: HashMap<String, String>,
-// }
+#[derive(Template)]
+#[template(path = "projects.html")]
+struct Project {
+    meow: usize,
+}
 
-// #[derive(Deserialize)]
-// struct Frontmatter {
-//     title: String,
-//     blurb: String,
-// }
-
-// fn make_markdown
-
-// #[derive(Template)]
-// #[template(path = "blog.html")]
-// struct Page {
-// content: String,
-// }
+async fn projects() -> Project {
+    Project { meow: 4 }
+}

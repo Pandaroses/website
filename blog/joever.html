@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>pandarose_</title>
+    <link rel="stylesheet" href="/static/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="mocha bg-base font-mono justify-center flex py-6 text-text bg-cover"
+  >
+    <div class="w-[47rem] text-balance">
+      <div
+        class="flex flex-row place-content-between text-md font-bold md:text-xl"
+      >
+        <a href="/" class="text-mauve"> home</a>
+        <a href="/projects" class="text-pink"> projects </a>
+        <a href="/blog" class="text-flamingo"> blog </a>
+        <a href="/contact" class="text-rosewater"> contact </a>
+      </div>
+      
+<div class="flex flex-row justify-between my-2 py-2 text-2xl border-b-2  border-rosewater"> 
+<div class="text-text "> why making a SSG in a build script is a dumb idea </div>
+<a href="/blog" class="text-red ">back </a>
+</div>
+<div class=""> <p>a few weeks ago i decided to make a personal website of my own, i've tried to do it multiple times before, but each time just got bored &amp; gave up.
+unfortunately, the silly cat brain inside of me decided that writing the website in rust would be awesome &amp; cool(i still think that)</p>
+<h2>the good</h2>
+<ul>
+<li>in my opinion, the website looks pretty</li>
+<li>decently fast</li>
+</ul>
+<h2>the bad</h2>
+<ul>
+<li>code strewn over the place</li>
+<li>weird url conventions</li>
+<li>will be completely rewritten</li>
+</ul>
+<h2>the ugly</h2>
+<ul>
+<li>the code</li>
+</ul>
+<pre style="background-color:#1e1e2e;"><code class="language-rust"><span style="color:#cdd6f4;">        </span><span style="color:#cba6f7;">let mut</span><span style="color:#cdd6f4;"> options </span><span style="color:#94e2d5;">= </span><span style="color:#cdd6f4;">Options</span><span style="color:#94e2d5;">::</span><span style="color:#cdd6f4;">default</span><span style="color:#9399b2;">();
+</span><span style="color:#cdd6f4;">        options.extension.math_code </span><span style="color:#94e2d5;">= </span><span style="color:#f38ba8;">true</span><span style="color:#9399b2;">;
+</span><span style="color:#cdd6f4;">        options.extension.table </span><span style="color:#94e2d5;">= </span><span style="color:#f38ba8;">true</span><span style="color:#9399b2;">;
+</span><span style="color:#cdd6f4;">        options.extension.autolink </span><span style="color:#94e2d5;">= </span><span style="color:#f38ba8;">true</span><span style="color:#9399b2;">;
+</span><span style="color:#cdd6f4;">        options.extension.math_dollars </span><span style="color:#94e2d5;">= </span><span style="color:#f38ba8;">true</span><span style="color:#9399b2;">;
+</span><span style="color:#cdd6f4;">        </span><span style="color:#cba6f7;">let mut</span><span style="color:#cdd6f4;"> plugins </span><span style="color:#94e2d5;">= </span><span style="color:#cdd6f4;">Plugins</span><span style="color:#94e2d5;">::</span><span style="color:#cdd6f4;">default</span><span style="color:#9399b2;">();
+</span><span style="color:#cdd6f4;">        </span><span style="color:#cba6f7;">let</span><span style="color:#cdd6f4;"> meow </span><span style="color:#94e2d5;">= </span><span style="color:#cdd6f4;">SyntectAdapterBuilder</span><span style="color:#94e2d5;">::</span><span style="color:#cdd6f4;">new</span><span style="color:#9399b2;">()
+</span><span style="color:#cdd6f4;">            .</span><span style="font-style:italic;color:#89b4fa;">theme_set</span><span style="color:#9399b2;">(</span><span style="color:#cdd6f4;">ThemeSet</span><span style="color:#94e2d5;">::</span><span style="color:#cdd6f4;">load_from_folder</span><span style="color:#9399b2;">(</span><span style="color:#a6e3a1;">&quot;src&quot;</span><span style="color:#9399b2;">)</span><span style="color:#cdd6f4;">.</span><span style="font-style:italic;color:#89b4fa;">unwrap</span><span style="color:#9399b2;">())
+</span><span style="color:#cdd6f4;">            .</span><span style="font-style:italic;color:#89b4fa;">theme</span><span style="color:#9399b2;">(</span><span style="color:#a6e3a1;">&quot;mocha&quot;</span><span style="color:#9399b2;">)
+</span><span style="color:#cdd6f4;">            .</span><span style="font-style:italic;color:#89b4fa;">build</span><span style="color:#9399b2;">();
+</span><span style="color:#cdd6f4;">        plugins.render.codefence_syntax_highlighter </span><span style="color:#94e2d5;">= </span><span style="font-style:italic;color:#f9e2af;">Some</span><span style="color:#9399b2;">(</span><span style="color:#94e2d5;">&amp;</span><span style="color:#cdd6f4;">meow</span><span style="color:#9399b2;">);
+</span><span style="color:#cdd6f4;">        </span><span style="color:#cba6f7;">let</span><span style="color:#cdd6f4;"> awesome </span><span style="color:#94e2d5;">=</span><span style="color:#cdd6f4;"> Awesome </span><span style="color:#9399b2;">{
+</span><span style="color:#cdd6f4;">            title</span><span style="color:#9399b2;">:</span><span style="color:#cdd6f4;"> header.title</span><span style="color:#9399b2;">,
+</span><span style="color:#cdd6f4;">            body</span><span style="color:#9399b2;">: </span><span style="font-style:italic;color:#89b4fa;">markdown_to_html_with_plugins</span><span style="color:#9399b2;">(</span><span style="color:#cdd6f4;">iter.</span><span style="font-style:italic;color:#89b4fa;">next</span><span style="color:#9399b2;">()</span><span style="color:#cdd6f4;">.</span><span style="font-style:italic;color:#89b4fa;">unwrap</span><span style="color:#9399b2;">(), </span><span style="color:#94e2d5;">&amp;</span><span style="color:#cdd6f4;">options</span><span style="color:#9399b2;">, </span><span style="color:#94e2d5;">&amp;</span><span style="color:#cdd6f4;">plugins</span><span style="color:#9399b2;">),
+</span><span style="color:#cdd6f4;">        </span><span style="color:#9399b2;">};
+</span><span style="color:#cdd6f4;">        fs</span><span style="color:#94e2d5;">::</span><span style="color:#cdd6f4;">write</span><span style="color:#9399b2;">(</span><span style="font-style:italic;color:#89b4fa;">format!</span><span style="color:#9399b2;">(</span><span style="color:#a6e3a1;">&quot;blog/</span><span style="color:#f5c2e7;">{}</span><span style="color:#a6e3a1;">&quot;</span><span style="color:#9399b2;">,</span><span style="color:#cdd6f4;"> id</span><span style="color:#9399b2;">),</span><span style="color:#cdd6f4;"> awesome.</span><span style="font-style:italic;color:#89b4fa;">render</span><span style="color:#9399b2;">()</span><span style="color:#cdd6f4;">.</span><span style="font-style:italic;color:#89b4fa;">unwrap</span><span style="color:#9399b2;">())</span><span style="color:#cdd6f4;">.</span><span style="font-style:italic;color:#89b4fa;">unwrap</span><span style="color:#9399b2;">();
+</span><span style="color:#cdd6f4;">        fs</span><span style="color:#94e2d5;">::</span><span style="color:#cdd6f4;">write</span><span style="color:#9399b2;">(</span><span style="color:#a6e3a1;">&quot;templates/truesay.html&quot;</span><span style="color:#9399b2;">,</span><span style="color:#cdd6f4;"> blogs.</span><span style="font-style:italic;color:#89b4fa;">render</span><span style="color:#9399b2;">()</span><span style="color:#cdd6f4;">.</span><span style="font-style:italic;color:#89b4fa;">unwrap</span><span style="color:#9399b2;">())</span><span style="color:#cdd6f4;">.</span><span style="font-style:italic;color:#89b4fa;">unwrap</span><span style="color:#9399b2;">();
+</span><span style="color:#cdd6f4;">
+</span><span style="color:#cdd6f4;">  
+</span></code></pre>
+  </div>
+
+
+    </div>
+  </body>
+</html>

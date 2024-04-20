@@ -1,0 +1,18 @@
+
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="text-3xl  my-2 text-bold"> silly little texts</div> 
+{% for blog in blogs %}
+<div class="p-2 my-4 border-2 border-{{blog.colour}} flex flex-col"> 
+<a href="/blogs/{{blog.id}}" class="text-xl ">
+<div class="flex flex-row justify-between"><span class="text-2xl  text-bold"> {{ blog.header.title }} </span> {{blog.header.date}} </div>
+{{ blog.header.description }} 
+</a>
+</div>
+{% endfor %}
+
+{% endblock %}
+
+
